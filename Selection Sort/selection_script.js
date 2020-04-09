@@ -8,13 +8,17 @@ for (i = 0; i < numElements; i++) {
   numbers.push(Math.floor(Math.random() * 99) + 1);
 }
 
-height = document.getElementById("elements").style.height
-
-
 // sort variables
 let speed = 100;
 let sortStep = 0;
 let running = false;
+
+slider = document.getElementById("myRange");
+speed = 200 - slider.value
+slider.oninput = function() {
+  speed = 200 - this.value
+  document.getElementById("sliderValue").innerText = this.value;
+};
 
 let startButton = document.getElementById("startButton")
 

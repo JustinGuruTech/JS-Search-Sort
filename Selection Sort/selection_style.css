@@ -1,6 +1,16 @@
 body {
     font-family: "Courier New";
-  }
+}
+
+.slideContainer {
+  height: 50px;
+}
+
+#sliderValue {
+  display: inline;
+  font-weight: bold;
+  font-size: 30px;
+}
 
 #elements {
   height: auto;
