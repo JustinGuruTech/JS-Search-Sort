@@ -3,12 +3,12 @@ body {
 }
 
 .slideContainer {
-  height: 50px;
+  height: 70px;
 }
 
-#sliderValue {
+.slideContainer p {
   display: inline;
-  font-weight: bold;
+
   font-size: 30px;
 }
 
