@@ -1,12 +1,37 @@
 // list of unsorted numbers
-let numbers = [14, 54, 23, 34, 35, 64, 75, 12, 90, 43];
-let speed = 200;
-let sortStep = 0;
 
-document.getElementById("startButton").onclick = function() {
-	sortSingleStep(sortStep);
-	sortStep++;
+// set number of elements based on window width
+width = window.innerWidth;
+numElements = Math.floor(width / 46);
+let numbers = []
+for (i = 0; i < numElements; i++) {
+  numbers.push(Math.floor(Math.random() * 99) + 1);
+}
+
+height = document.getElementById("elements").style.height
+
+
+// sort variables
+let speed = 100;
+let sortStep = 0;
+let running = false;
+
+let startButton = document.getElementById("startButton")
+
+// start/stop sort on button press
+startButton.onclick = function() {
+  if (startButton.innerText == "Start Sort" || startButton.innerText == "Resume Sort") {
+    running = true;
+    startButton.innerText = "Pause Sort";
+    sortSingleStep(sortStep);
+    sortStep++;
+  } else if (startButton.innerText == "Pause Sort") {
+    running = false;
+    startButton.innerText = "Pausing...";
+  }
  };
+
+ document
 
 // element for copying
 var element = document.getElementById("placeholder");
@@ -25,59 +50,60 @@ var button = document.getElementById("stepButton");
 button.onclick = function () {
 	sortSingleStep(sortStep);
   sortStep++;
+  button.isenable
 };
 
 // single step of sort
 function sortSingleStep(startIndex) {
+  if (running) {
+    // set comparison color
+    document.getElementById(startIndex).className = "element compareToElement";
 
-	// set comparison color
-	document.getElementById(startIndex).className = "element compareToElement";
-
-	// find lowest number
-	let lowestNumIndex = startIndex;
-  for (let i = startIndex + 1; i < numbers.length; i++) {
-  
-  	// wait between comparisons
-  	(function (i) {
-      setTimeout(function () {
-      
-      	// set comparing style
-        document.getElementById(i).className = "element comparingElement";
-        
-        // found new minimum
-        if (numbers[i] < numbers[lowestNumIndex]) {
-        	if (lowestNumIndex != startIndex) {
-          	document.getElementById(lowestNumIndex).className = "element";
-          }
-          lowestNumIndex = i;
-          document.getElementById(i).className = "element minimumElement";
-    		} 
-        
-        // not new minimum, set back to regular element style
-        else {
-        	// wait for next element to compare to change back
-          setTimeout(function() {
-            document.getElementById(i).className = "element";
-          }, speed);
-        }
-        
-        if (i == numbers.length - 1) {
-        	swapElements(startIndex, lowestNumIndex);
-        }
-      
-      }, speed*i);
+    // find lowest number
+    let lowestNumIndex = startIndex;
+    for (let i = startIndex + 1; i < numbers.length; i++) {
     
-    })(i); 
-		document.getElementById(i).className = "element";
-  	
+    // wait between comparisons
+      (function (i) {
+        setTimeout(function () {
+        
+          // set comparing style
+          document.getElementById(i).className = "element comparingElement";
+          
+          // found new minimum
+          if (numbers[i] < numbers[lowestNumIndex]) {
+            if (lowestNumIndex != startIndex) {
+              document.getElementById(lowestNumIndex).className = "element";
+            }
+            lowestNumIndex = i;
+            document.getElementById(i).className = "element minimumElement";
+          } 
+          
+          // not new minimum, set back to regular element style
+          else {
+            // wait for next element to compare to change back
+            setTimeout(function() {
+              document.getElementById(i).className = "element";
+            }, speed);
+          }
+          
+          if (i == numbers.length - 1) {
+            swapElements(startIndex, lowestNumIndex);
+          }
+        
+        }, speed*i);
+      
+      })(i); 
+      document.getElementById(i).className = "element";
+      
+    }
   }
 	
 	
 }
 
 function swapElements(startIndex, lowestNumIndex) {
-	console.log(startIndex);
-  console.log(lowestNumIndex);
+
   // sanity check
   if (startIndex != lowestNumIndex) {
   	setTimeout(function () {
@@ -105,14 +131,17 @@ function swapElements(startIndex, lowestNumIndex) {
       lowestElement.style.paddingTop = paddingTemp;
       
     }, 700);
-  }
-  
-  // reset display
-  setTimeout(function () {
-      document.getElementById(startIndex).className = "element";
-      document.getElementById(lowestNumIndex).className = "element";
-			button.click(); // move to next step
-    }, 1400);
+  } 
+    // reset display
+    setTimeout(function () {
+        document.getElementById(lowestNumIndex).className = "element";
+        if (running) {
+          button.click(); // move to next step
+        } else {
+          startButton.innerText = "Resume Sort";
+          document.getElementById(startIndex).className = "element minimumElement";
+        }
+      }, 1400);
 }
 
 
