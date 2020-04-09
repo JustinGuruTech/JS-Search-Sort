@@ -1,0 +1,40 @@
+body {
+    font-family: "Courier New";
+  }
+  
+  #elements {
+    padding-top: 100px;
+    width: 500px;
+    height: 100px;
+  }
+  
+  #placeholder {
+    display: none;
+  }
+  
+  .element {
+    border: 2px black solid;
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+    display: inline;
+    margin-right: 10px;
+    margin-left: 0;
+    padding-top: 0;
+  }
+  
+  .compareToElement {
+    background-color: #696FFF;
+  }
+  
+  .comparingElement {
+    background-color: #FF4E50;
+  }
+  
+  .minimumElement {
+    background-color: #49FF70;
+  }
+  
+  #stepButton {
+    display: none;
+  }
