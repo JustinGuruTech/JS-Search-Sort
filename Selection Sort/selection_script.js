@@ -169,11 +169,13 @@ function startBinarySearch() {
     document.getElementById(i).className = "element";
   }
   document.getElementById("result").innerText = "Searching...";
+  startButton.innerText = "Searching...";
 
   // store numbers
   searchNum = document.getElementById("searchNum").value;
   binarySearch(1, searchNum, 0, numbers.length - 1).then(function(result) {
     // update display
+    startButton.innerText = "Binary Search";
     if (result != -1 && result != null) {
       document.getElementById(result).className = "element midElement";
       document.getElementById("result").innerText = searchNum + " found at index " + result + "!";
