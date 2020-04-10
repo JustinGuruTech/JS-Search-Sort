@@ -15,8 +15,8 @@
         </p>
         <div class="slideContainer">
             <p>Speed: </p>
-            <input type="range" min="1" max="200" value="50" class="slider" id="myRange">
-            <p>50</p>
+            <input type="range" min="1" max="200" value="100" class="slider" id="myRange">
+            <p id="sliderValue">100</p>
         </div>
         <div id="elements">
             <div class="element" id="placeholder">
@@ -31,6 +31,9 @@
         <button id='stepButton'>
         Next Step
         </button>
+
+        <input id="searchNum" type="number">
+        <p id="result"></p>
     </body>
 
     <script type="text/javascript" src="selection_script.js"></script>
